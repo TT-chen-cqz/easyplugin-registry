@@ -1,0 +1,12 @@
+# 默认所有改动都需要维护者复核
+*                       @TT-chen-cqz
+
+# 治理与校验文件改动风险更高，单独列出来提醒重点看
+/POLICY.md              @TT-chen-cqz
+/CONTRIBUTING.md        @TT-chen-cqz
+/schema/                @TT-chen-cqz
+/scripts/               @TT-chen-cqz
+/.github/               @TT-chen-cqz
+
+# 索引由所有维护者共同复核
+/index.json             @TT-chen-cqz

@@ -1,0 +1,43 @@
+name: Publish Store Branch
+
+on:
+  push:
+    branches: [main]
+    paths: ['index.json']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 发布前再校验一次
+        run: python scripts/validate_index.py
+
+      - name: 把 index.json 同步到 store 分支
+        run: |
+          set -e
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          cp index.json /tmp/index.json
+          git checkout --orphan store-next
+          git rm -rf . --quiet
+          cp /tmp/index.json index.json
+          printf '%s\n' \
+            '# store 分支（自动生成，请勿直接修改）' \
+            '' \
+            '本分支由 .github/workflows/publish.yml 从 main 分支同步，客户端只读这里：' \
+            '' \
+            '    https://raw.githubusercontent.com/TT-chen-cqz/easyplugin-registry/store/index.json' \
+            '' \
+            '要改内容请对 main 分支提 PR。' > README.md
+          git add index.json README.md
+          git commit -m "publish: 同步索引 $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push --force origin store-next:store

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/TT-chen-cqz/easyplugin-registry/schema/index.schema.json",
+  "title": "EasyPlugin Registry Index",
+  "type": "object",
+  "required": ["schema", "packages"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": 1,
+      "description": "索引格式版本，字段不兼容变更时才 +1"
+    },
+    "registry": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "来源显示名，客户端用它标注条目来自哪个源"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri",
+      "description": "控制仓库地址"
+    },
+    "updated": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "最后更新日期，YYYY-MM-DD"
+    },
+    "packages": {
+      "type": "array",
+      "description": "全部条目，必须按 id 字母序排列；初始为空数组",
+      "items": {
+        "type": "object",
+        "required": [
+          "id", "kind", "name", "version", "author", "summary",
+          "repo", "asset", "sha256"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+            "description": "唯一标识；插件必须同时是合法 Python 标识符（类名）"
+          },
+          "kind": {
+            "enum": ["plugin", "theme"]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?$",
+            "description": "语义化版本，必须与 Release tag 一致（tag 为 v 加版本号，如 v1.0.0）"
+          },
+          "author": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "license": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 120
+          },
+          "repo": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+            "description": "作者仓库，形如 owner/name"
+          },
+          "asset": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+\\.zip$",
+            "description": "Release 附件名，建议 <id>-<version>.zip"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "description": "附件的小写 sha256，客户端校验不通过即拒绝安装"
+          },
+          "min_client": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+$",
+            "description": "要求的最低客户端版本"
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "是否已由维护者人工复核（首次合并后由维护者置 true）"
+          },
+          "yanked": {
+            "type": "boolean",
+            "description": "下架标记：客户端禁止新安装，并提示已装用户"
+          },
+          "yank_reason": {
+            "type": "string",
+            "maxLength": 120,
+            "description": "下架原因，yanked 为 true 时必填"
+          }
+        }
+      }
+    }
+  }
+}
