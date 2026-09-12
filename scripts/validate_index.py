@@ -10,7 +10,7 @@ INDEX_PATH = 'index.json'
 KINDS = ('plugin', 'theme')
 REQUIRED_FIELDS = ('id', 'kind', 'name', 'version', 'author', 'summary',
                    'repo', 'asset', 'sha256')
-ALLOWED_FIELDS = REQUIRED_FIELDS + ('license', 'min_client', 'verified',
+ALLOWED_FIELDS = REQUIRED_FIELDS + ('license', 'min_client',
                                     'yanked', 'yank_reason')
 ID_RE = re.compile(r'^[A-Za-z][A-Za-z0-9_]*$')
 VERSION_RE = re.compile(r'^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$')

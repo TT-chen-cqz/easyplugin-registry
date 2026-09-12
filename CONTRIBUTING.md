@@ -61,7 +61,6 @@ Fork 本仓库，编辑 `index.json`，在 `packages` 数组里**按 `id` 字母
 | `asset` | 字符串 | 是 | Release 附件名，以 `.zip` 结尾 |
 | `sha256` | 字符串 | 是 | 附件的小写 sha256 |
 | `min_client` | 字符串 | 否 | 要求的最低客户端版本，形如 `1.0` |
-| `verified` | 布尔 | 否 | 首次提交写 `false`，维护者复核后置 `true` |
 | `yanked` | 布尔 | 否 | 下架标记，由维护者操作 |
 | `yank_reason` | 字符串 | 否 | 下架原因，`yanked` 为 `true` 时必填 |
 
@@ -83,8 +82,8 @@ python scripts/validate_index.py
 | CI 报 `未按 id 字母序排列` | 直接追加到了数组末尾 |
 | CI 报 `id 不是合法 Python 标识符` | 插件名带了 `-` 或空格 |
 | CI 报 `version 与 tag 不一致` | `manifest.json` 写 `1.0`、tag 打 `v1.0.0` |
-| 人工驳回 | 声明与实际行为不符、代码有网络请求或执行外部命令、README 缺失 |
-| 人工驳回 | 功能与已有条目重复 |
+| 驳回 | 声明与实际行为不符、代码有网络请求或执行外部命令、README 缺失 |
+| 驳回 | 功能与已有条目重复 |
 
 ## 六、更新已上架插件
 

@@ -41,6 +41,3 @@ jobs:
           jsonschema.validate(data, schema)
           print('JSON Schema 校验通过')
           PY
-
-      - name: 提醒人工复核
-        run: echo '自动校验通过。合并前请维护者按 POLICY.md 完成人工复核。'

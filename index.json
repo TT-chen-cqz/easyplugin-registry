@@ -2,7 +2,7 @@
   "schema": 1,
   "registry": "EasyPlugin 官方商店",
   "homepage": "https://github.com/TT-chen-cqz/easyplugin-registry",
-  "updated": "2026-09-11",
+  "updated": "2026-09-12",
   "packages": [
     {
       "id": "ModernDark",
@@ -15,8 +15,7 @@
       "repo": "TT-chen-cqz/idle-modern-dark-theme",
       "asset": "ModernDark-1.0.0.zip",
       "sha256": "b1e57b5aa1ce29aedff597789b5cd9445cd69bfcd4e5b3bce3e2522f1fee0ac6",
-      "min_client": "1.1",
-      "verified": true
+      "min_client": "1.1"
     }
   ]
 }

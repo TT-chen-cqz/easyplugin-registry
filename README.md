@@ -19,14 +19,14 @@ easyplugin-registry/
 │   ├── PULL_REQUEST_TEMPLATE.md
 │   └── CODEOWNERS
 ├── CONTRIBUTING.md                 上架流程（作者看这个）
-└── POLICY.md                       审核标准与下架规则（维护者看这个）
+└── POLICY.md                       索引规则与下架规则（维护者看这个）
 ```
 
 ## 分支约定
 
 | 分支 | 用途 | 谁能写 |
 |---|---|---|
-| `main` | 源文件与评审记录，改动一律走 PR | 维护者 |
+| `main` | 源文件与改动记录，改动一律走 PR | 维护者 |
 | `store` | 由 `publish.yml` 自动同步的发布副本，**客户端只读这个** | 机器人 |
 
 客户端只信任 `store` 分支：即使 `main` 被人误改，发布内容也只在合并后才更新。
@@ -41,13 +41,14 @@ https://raw.githubusercontent.com/TT-chen-cqz/easyplugin-registry/store/index.js
 
 国内直连 GitHub 可能不通，客户端应支持把 `https://raw.githubusercontent.com/`
 替换为镜像前缀（例如反向代理域名），并缓存上一次成功拉取的索引供离线使用。
+附件下载地址（`https://github.com/`）同样应支持镜像前缀，两个前缀分别配置。
 
 ### 2. 自定义控制仓库
 
 EasyPlugin 允许用户添加任意**格式相同**的控制仓库（私有小圈子、公司内网镜像都行）。
 客户端行为约定：
 
-- 每个源在界面上单独标注来源（取索引里的 `registry` 字段）与「未审核」标记；
+- 每个源在界面上单独标注来源（取索引里的 `registry` 字段）；
 - 多个源的条目按 `id` 合并，**同 id 冲突时官方源优先**，并提示用户；
 - 自定义源拉取失败只影响该源，不影响官方源。
 
@@ -82,4 +83,4 @@ python scripts/validate_index.py
 ## 相关文档
 
 - [CONTRIBUTING.md](CONTRIBUTING.md)：上架流程
-- [POLICY.md](POLICY.md)：审核标准、安全要求、下架规则
+- [POLICY.md](POLICY.md)：索引规则、安全要求、下架规则
