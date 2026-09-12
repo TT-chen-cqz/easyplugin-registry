@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "registry": "EasyPlugin 官方商店",
+  "homepage": "https://github.com/TT-chen-cqz/easyplugin-registry",
+  "updated": "2026-09-12",
+  "packages": [
+    {
+      "id": "ModernDark",
+      "kind": "theme",
+      "name": "Modern Dark",
+      "version": "1.0.0",
+      "author": "TT-chen-cqz",
+      "license": "MIT",
+      "summary": "低眩光的现代深色主题：冷灰底色搭配柔和的高对比语法色",
+      "repo": "TT-chen-cqz/idle-modern-dark-theme",
+      "asset": "ModernDark-1.0.0.zip",
+      "sha256": "b1e57b5aa1ce29aedff597789b5cd9445cd69bfcd4e5b3bce3e2522f1fee0ac6",
+      "min_client": "1.1"
+    }
+  ]
+}
